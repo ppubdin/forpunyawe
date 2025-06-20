@@ -1,37 +1,57 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>💖</title>
   <style>
-    body {
-      background-color: #fff0f5;
+    html, body {
+      height: 100%;
+      margin: 0; padding: 0;
+      background-color: #000;
       font-family: 'Sarabun', sans-serif;
-      text-align: center;
-      padding: 80px 30px;
-      color: #ff3385;
+      color: #ff99cc;
     }
-
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .content {
+      max-width: 700px;
+      padding: 30px;
+      text-align: center;
+    }
     #typewriter {
-      font-size: 18px;
+      font-size: 20px;
       white-space: pre-wrap;
       text-align: left;
       display: inline-block;
-      border-right: 2px solid #ff3385;
-      animation: blink 1s step-end infinite;
-      max-width: 600px;
     }
-
-    @keyframes blink {
-      0%, 100% { border-color: #ff3385; }
-      50% { border-color: transparent; }
+    .heart {
+      font-size: 20px;
+      color: #ff4da6;
+      white-space: pre;
+      animation: pulse 1.5s infinite;
+      margin-top: 40px;
+    }
+    @keyframes pulse {
+      0%   { opacity: 1; transform: scale(1); }
+      50%  { opacity: 0.7; transform: scale(1.05); }
+      100% { opacity: 1; transform: scale(1); }
     }
   </style>
 </head>
 <body>
-
-  <div id="typewriter"></div>
-
+  <div class="content">
+    <div id="typewriter"></div>
+    <div class="heart">
+      ⠀⠀⠀⣴⣶⣶⣦⡀⢀⣴⣶⣶⣦<br />
+      ⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇<br />
+      ⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⠟<br />
+      ⠀⠀⠀⠉⠛⠿⣿⣿⠿⠛⠉<br />
+    </div>
+  </div>
   <script>
     const message = `hi my dear. :)
 
@@ -76,23 +96,17 @@
 ขอให้ทุกอย่างใจดีกับปุนนะ
 
 ด้วยรักและดุอาร์.
-
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣤⡀⠀⠀⠀⠀⣀⣤⡀
-⠀⠀⠀⠀⠀⠀⠀⠀⠸⣿⣿⣷⡀⠀⣾⣿⣿⡟
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠛⢿⣿⣷⣿⣿⠟⠁
-⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠙⠛⠋⠀⠀⠀⠀`;
-
+`;
+    const typewriter = document.getElementById("typewriter");
     let i = 0;
-    function typeWriter() {
-      if (i < message.length) {
-        document.getElementById("typewriter").textContent += message.charAt(i);
+    function type() {
+      if(i < message.length){
+        typewriter.textContent += message.charAt(i);
         i++;
-        setTimeout(typeWriter, 30);
+        setTimeout(type, 35);
       }
     }
-
-    window.onload = typeWriter;
+    type();
   </script>
-
 </body>
 </html>

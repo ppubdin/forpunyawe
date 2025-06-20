@@ -28,13 +28,13 @@
       text-align: left;
       display: inline-block;
     }
-    .heart {
-      font-size: 20px;
+    #heartWriter {
+      font-size: 15px; /* 🧠 ปรับขนาดตัวอักษรให้เล็กลง */
       color: #ff4da6;
       white-space: pre;
-      animation: pulse 1.5s infinite;
       margin-top: 40px;
-      display: none; /* ซ่อนไว้ก่อน */
+      display: inline-block;
+      animation: pulse 1.5s infinite;
     }
     @keyframes pulse {
       0%   { opacity: 1; transform: scale(1); }
@@ -46,13 +46,9 @@
 <body>
   <div class="content">
     <div id="typewriter"></div>
-    <div class="heart" id="heart">
-      ⠀⠀⠀⣴⣶⣶⣦⡀⢀⣴⣶⣶⣦<br />
-      ⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇<br />
-      ⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⠟<br />
-      ⠀⠀⠀⠉⠛⠿⣿⣿⠿⠛⠉<br />
-    </div>
+    <div id="heartWriter"></div> <!-- 🧠 ใช้ ID นี้สำหรับพิมพ์หัวใจ -->
   </div>
+
   <script>
     const message = `hi my dear. :)
 
@@ -98,19 +94,38 @@
 
 ด้วยรักและดุอาร์.
 `;
+
+    const heart = `
+⠀⠀⠀⣴⣶⣶⣦⡀⢀⣴⣶⣶⣦
+⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇
+⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⠟
+⠀⠀⠀⠉⠛⠿⣿⣿⠿⠛⠉
+`;
+
     const typewriter = document.getElementById("typewriter");
-    const heart = document.getElementById("heart");
+    const heartWriter = document.getElementById("heartWriter");
+
     let i = 0;
-    function type() {
+    function typeText() {
       if (i < message.length) {
         typewriter.textContent += message.charAt(i);
         i++;
-        setTimeout(type, 35);
+        setTimeout(typeText, 35);
       } else {
-        heart.style.display = "block"; // แสดงหัวใจเมื่อพิมพ์เสร็จ
+        setTimeout(typeHeart, 500); // พักครึ่งวินาทีก่อนพิมพ์หัวใจ
       }
     }
-    type();
+
+    let j = 0;
+    function typeHeart() {
+      if (j < heart.length) {
+        heartWriter.textContent += heart.charAt(j);
+        j++;
+        setTimeout(typeHeart, 20); // เร็วขึ้นเล็กน้อยตอนพิมพ์หัวใจ
+      }
+    }
+
+    typeText();
   </script>
 </body>
 </html>

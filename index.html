@@ -34,6 +34,7 @@
       white-space: pre;
       animation: pulse 1.5s infinite;
       margin-top: 40px;
+      display: none; /* ซ่อนไว้ก่อน */
     }
     @keyframes pulse {
       0%   { opacity: 1; transform: scale(1); }
@@ -45,7 +46,7 @@
 <body>
   <div class="content">
     <div id="typewriter"></div>
-    <div class="heart">
+    <div class="heart" id="heart">
       ⠀⠀⠀⣴⣶⣶⣦⡀⢀⣴⣶⣶⣦<br />
       ⠀⠀⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡇<br />
       ⠀⠀⠹⣿⣿⣿⣿⣿⣿⣿⣿⠟<br />
@@ -98,12 +99,15 @@
 ด้วยรักและดุอาร์.
 `;
     const typewriter = document.getElementById("typewriter");
+    const heart = document.getElementById("heart");
     let i = 0;
     function type() {
-      if(i < message.length){
+      if (i < message.length) {
         typewriter.textContent += message.charAt(i);
         i++;
         setTimeout(type, 35);
+      } else {
+        heart.style.display = "block"; // แสดงหัวใจเมื่อพิมพ์เสร็จ
       }
     }
     type();
